@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel Tee - Son Of Man</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Son Of Man</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main class="product-detail">
+    <img src="images/angel-shirt.jpg" alt="Angel Tee" class="product-image-large" />
+    <div class="product-info">
+      <h2>Angel Tee</h2>
+      <p class="price">$29.99</p>
+      <p>
+        “Lord Jesus Christ, Son of God, have mercy on me, a sinner.” <br>
+        A bold design for a bold faith. Premium cotton. Super soft feel.
+      </p>
+      <button onclick="addToCart('Angel Tee', 29.99)">Add to Cart</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Son Of Man. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function addToCart(productName, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name: productName, price: price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(productName + " added to cart!");
+    }
+  </script>
+</body>
+</html>
