@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop - Son Of Man</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f1;
+      color: #333;
+    }
+
+    header {
+      background-color: #a0522d;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 30px 0 10px;
+      color: #8b4513;
+    }
+
+    .filters {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .filters button {
+      background-color: #a0522d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .item {
+      background-color: #f5e1d3;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .item h3 {
+      margin-top: 15px;
+      color: #5c3a1d;
+    }
+
+    .item p {
+      margin: 10px 0;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #8b4513;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      background-color: #a0522d;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #a0522d;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>Son Of Man</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <h1>Shop Our Collection</h1>
+
+  <div class="filters">
+    <button onclick="filterItems('all')">All</button>
+    <button onclick="filterItems('shirt')">Shirts</button>
+    <button onclick="filterItems('hoodie')">Hoodies</button>
+    <button onclick="filterItems('jewelry')">Jewelry</button>
+    <button onclick="filterItems('cap')">Caps</button>
+  </div>
+
+  <section class="shop-grid" id="productGrid">
+    <div class="item shirt" data-id="1">
+      <img src="https://via.placeholder.com/200x200.png?text=Faith+Tee" alt="Faith Tee">
+      <h3>Faith Tee</h3>
+      <p>Simple & bold. Share your faith with style.</p>
+      <p class="price">$25.00</p>
+      <button class="add-btn" onclick="addToCart(1, 'Faith Tee', 25)">Add to Cart</button>
+    </div>
+    <div class="item hoodie" data-id="2">
+      <img src="https://via.placeholder.com/200x200.png?text=Cross+Hoodie" alt="Cross Hoodie">
+      <h3>Cross Hoodie</h3>
+      <p>Warm and inspiring. A cozy way to rep the cross.</p>
+      <p class="price">$45.00</p>
+      <button class="add-btn" onclick="addToCart(2, 'Cross Hoodie', 45)">Add to Cart</button>
+    </div>
+    <div class="item jewelry" data-id="3">
+      <img src="https://via.placeholder.com/200x200.png?text=Jesus+Necklace" alt="Jesus Necklace">
+      <h3>Jesus Necklace</h3>
+      <p>Wear His name proudly wherever you go.</p>
+      <p class="price">$30.00</p>
+      <button class="add-btn" onclick="addToCart(3, 'Jesus Necklace', 30)">Add to Cart</button>
+    </div>
+    <div class="item cap" data-id="4">
+      <img src="https://via.placeholder.com/200x200.png?text=Scripture+Cap" alt="Scripture Cap">
+      <h3>Scripture Cap</h3>
+      <p>Keep the Word close — even on the go.</p>
+      <p class="price">$20.00</p>
+      <button class="add-btn" onclick="addToCart(4, 'Scripture Cap', 20)">Add to Cart</button>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Son Of Man. All rights reserved.
+  </footer>
+
+  <script>
+    function addToCart(id, name, price) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItem = cart.find(item => item.id === id);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ id, name, price, quantity: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} has been added to your cart!`);
+    }
+
+    function filterItems(category) {
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

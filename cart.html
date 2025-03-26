@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - Son Of Man</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f1;
+      color: #333;
+      margin: 0;
+    }
+
+    header {
+      background-color: #a0522d;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 30px 0 10px;
+      color: #8b4513;
+    }
+
+    .cart-items {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f5e1d3;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .cart-item h3 {
+      color: #5c3a1d;
+    }
+
+    .remove-btn {
+      background-color: #a0522d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 20px;
+    }
+
+    footer {
+      background-color: #a0522d;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>Son Of Man</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <h1>Your Cart</h1>
+
+  <div class="cart-items" id="cartItems">
+    <!-- Cart items will be populated here -->
+  </div>
+
+  <div class="total" id="cartTotal">
+    <!-- Total price will be displayed here -->
+  </div>
+
+  <footer>
+    &copy; 2025 Son Of Man. All rights reserved.
+  </footer>
+
+  <script>
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsContainer = document.getElementById('cartItems');
+      const cartTotalContainer = document.getElementById('cartTotal');
+      
+      cartItemsContainer.innerHTML = '';
+      let totalPrice = 0;
+
+      cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        
+        cartItem.innerHTML = `
+          <h3>${item.name} x ${item.quantity}</h3>
+          <p>$${(item.price * item.quantity).toFixed(2)}</p>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+        `;
+        
+        cartItemsContainer.appendChild(cartItem);
+        totalPrice += item.price * item.quantity;
+      });
+
+      cartTotalContainer.innerHTML = `Total: $${totalPrice.toFixed(2)}`;
+    }
+
+    function removeFromCart(id) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const updatedCart = cart.filter(item => item.id !== id);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      loadCart();
+    }
+
+    // Load cart items when the page loads
+    window.onload = loadCart;
+  </script>
+
+</body>
+</html>
