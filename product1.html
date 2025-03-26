@@ -2,11 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Angel Tee - Son Of Man</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .product-detail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .product-image-large {
+      width: 300px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .product-info {
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      color: #333;
+      margin: 0.5rem 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+  </style>
 </head>
 <body>
+
   <header>
     <h1>Son Of Man</h1>
     <nav>
@@ -16,13 +74,13 @@
   </header>
 
   <main class="product-detail">
-    <img src="images/angel-shirt.jpg" alt="Angel Tee" class="product-image-large" />
+    <img src="images/angel-shirt.jpg" alt="Angel Tee" class="product-image-large">
     <div class="product-info">
       <h2>Angel Tee</h2>
       <p class="price">$29.99</p>
       <p>
         “Lord Jesus Christ, Son of God, have mercy on me, a sinner.” <br>
-        A bold design for a bold faith. Premium cotton. Super soft feel.
+        A bold design for a bold faith. Super soft premium cotton.
       </p>
       <button onclick="addToCart('Angel Tee', 29.99)">Add to Cart</button>
     </div>
@@ -42,3 +100,4 @@
   </script>
 </body>
 </html>
+
